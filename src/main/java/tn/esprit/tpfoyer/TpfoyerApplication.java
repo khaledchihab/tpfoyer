@@ -1,4 +1,4 @@
-package com.example.tpfoyer;
+package tn.esprit.tpfoyer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
