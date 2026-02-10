@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -20,5 +21,8 @@ public class Etudiant {
     private String prenomEt;
     private Long cin;
     private String ecole;
+    private LocalDate dateNaissance;
+    @ManyToMany(mappedBy = "etudiants")
+    private Set<Reservation> reservations;
     private LocalDate dateNaissance;
 }

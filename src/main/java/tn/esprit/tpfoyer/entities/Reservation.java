@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -18,4 +19,9 @@ public class Reservation {
     private Long idReservation;
     private LocalDate anneeUniversitaire;
     private boolean estValide;
+    @ManyToOne
+    private Chambre chambre;
+    @ManyToMany
+    private Set<Etudiant> etudiants;
+    private LocalDate anneeUniversitaire;
 }
