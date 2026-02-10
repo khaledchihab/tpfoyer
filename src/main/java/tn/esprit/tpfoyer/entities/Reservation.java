@@ -14,13 +14,16 @@ import java.util.Set;
 @NoArgsConstructor
 
 public class Reservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
+
     private LocalDate anneeUniversitaire;
+
     private boolean estValide;
-    @ManyToOne
-    private Chambre chambre;
-    @ManyToMany
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
     private Set<Etudiant> etudiants;
 }
