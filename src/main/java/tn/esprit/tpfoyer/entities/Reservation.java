@@ -23,5 +23,4 @@ public class Reservation {
     private Chambre chambre;
     @ManyToMany
     private Set<Etudiant> etudiants;
-    private LocalDate anneeUniversitaire;
 }

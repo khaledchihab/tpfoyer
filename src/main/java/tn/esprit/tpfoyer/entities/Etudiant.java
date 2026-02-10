@@ -24,5 +24,4 @@ public class Etudiant {
     private LocalDate dateNaissance;
     @ManyToMany(mappedBy = "etudiants")
     private Set<Reservation> reservations;
-    private LocalDate dateNaissance;
 }
