@@ -1,4 +1,6 @@
 package tn.esprit.tpfoyer.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,5 +25,6 @@ public class Etudiant {
     private String ecole;
     private LocalDate dateNaissance;
     @ManyToMany(mappedBy = "etudiants")
+    @JsonIgnore
     private Set<Reservation> reservations;
 }

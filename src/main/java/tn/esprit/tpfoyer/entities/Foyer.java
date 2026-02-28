@@ -1,4 +1,5 @@
 package tn.esprit.tpfoyer.entities;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,13 +16,12 @@ import java.util.Set;
 public class Foyer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idFoyer;
+    private Long idFoyer;
     private String nomFoyer;
     private Long capaciteFoyer;
     @OneToOne
     private Universite universite;
     @OneToMany(mappedBy = "foyer", cascade = CascadeType.ALL)
     private Set<Bloc> blocs;
-
 
 }
