@@ -2,7 +2,9 @@ package tn.esprit.tpfoyer.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.tpfoyer.dto.FoyerDTO;
 import tn.esprit.tpfoyer.entities.Foyer;
+import tn.esprit.tpfoyer.mapper.mapstruct.FoyerMapStructMapper;
 import tn.esprit.tpfoyer.services.IFoyerService;
 
 import java.util.List;
@@ -13,15 +15,20 @@ import java.util.List;
 public class FoyerController {
 
     IFoyerService foyerService;
+    FoyerMapStructMapper foyerMapper;
 
     @PostMapping("/addFoyer")
-    public Foyer addFoyer(@RequestBody Foyer f) {
-        return foyerService.addFoyer(f);
+    public FoyerDTO addFoyer(@RequestBody FoyerDTO foyerDTO) {
+        Foyer foyer = foyerMapper.toEntity(foyerDTO);
+        Foyer savedFoyer = foyerService.addFoyer(foyer);
+        return foyerMapper.toDTO(savedFoyer);
     }
 
     @PutMapping("/updateFoyer")
-    public Foyer updateFoyer(@RequestBody Foyer f) {
-        return foyerService.updateFoyer(f);
+    public FoyerDTO updateFoyer(@RequestBody FoyerDTO foyerDTO) {
+        Foyer foyer = foyerMapper.toEntity(foyerDTO);
+        Foyer updatedFoyer = foyerService.updateFoyer(foyer);
+        return foyerMapper.toDTO(updatedFoyer);
     }
 
     @DeleteMapping("/deleteFoyer/{idFoyer}")
@@ -30,7 +37,8 @@ public class FoyerController {
     }
 
     @GetMapping("/retrieveAllFoyers")
-    public List<Foyer> retrieveAllFoyers() {
-        return foyerService.getFoyers();
+    public List<FoyerDTO> retrieveAllFoyers() {
+        List<Foyer> foyers = foyerService.getFoyers();
+        return foyerMapper.toDTOList(foyers);
     }
 }

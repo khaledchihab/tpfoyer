@@ -2,7 +2,9 @@ package tn.esprit.tpfoyer.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.tpfoyer.dto.UniversiteDTO;
 import tn.esprit.tpfoyer.entities.Universite;
+import tn.esprit.tpfoyer.mapper.mapstruct.UniversiteMapStructMapper;
 import tn.esprit.tpfoyer.services.IUniversiteService;
 
 import java.util.List;
@@ -13,15 +15,20 @@ import java.util.List;
 public class UniversiteController {
 
     IUniversiteService universiteService;
+    UniversiteMapStructMapper universiteMapper;
 
     @PostMapping("/addUniversite")
-    public Universite addUniversite(@RequestBody Universite u) {
-        return universiteService.addUniversite(u);
+    public UniversiteDTO addUniversite(@RequestBody UniversiteDTO universiteDTO) {
+        Universite universite = universiteMapper.toEntity(universiteDTO);
+        Universite savedUniversite = universiteService.addUniversite(universite);
+        return universiteMapper.toDTO(savedUniversite);
     }
 
     @PutMapping("/updateUniversite")
-    public Universite updateUniversite(@RequestBody Universite u) {
-        return universiteService.updateUniversite(u);
+    public UniversiteDTO updateUniversite(@RequestBody UniversiteDTO universiteDTO) {
+        Universite universite = universiteMapper.toEntity(universiteDTO);
+        Universite updatedUniversite = universiteService.updateUniversite(universite);
+        return universiteMapper.toDTO(updatedUniversite);
     }
 
     @DeleteMapping("/deleteUniversite/{idUniversite}")
@@ -30,7 +37,8 @@ public class UniversiteController {
     }
 
     @GetMapping("/retrieveAllUniversites")
-    public List<Universite> retrieveAllUniversites() {
-        return universiteService.getUniversites();
+    public List<UniversiteDTO> retrieveAllUniversites() {
+        List<Universite> universites = universiteService.getUniversites();
+        return universiteMapper.toDTOList(universites);
     }
 }

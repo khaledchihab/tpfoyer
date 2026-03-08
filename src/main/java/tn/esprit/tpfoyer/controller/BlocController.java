@@ -2,7 +2,9 @@ package tn.esprit.tpfoyer.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.tpfoyer.dto.BlocDTO;
 import tn.esprit.tpfoyer.entities.Bloc;
+import tn.esprit.tpfoyer.mapper.mapstruct.BlocMapStructMapper;
 import tn.esprit.tpfoyer.services.IBlocService;
 
 import java.util.List;
@@ -13,15 +15,20 @@ import java.util.List;
 public class BlocController {
 
     IBlocService blocService;
+    BlocMapStructMapper blocMapper;
 
     @PostMapping("/addBloc")
-    public Bloc addBloc(@RequestBody Bloc b) {
-        return blocService.addBloc(b);
+    public BlocDTO addBloc(@RequestBody BlocDTO blocDTO) {
+        Bloc bloc = blocMapper.toEntity(blocDTO);
+        Bloc savedBloc = blocService.addBloc(bloc);
+        return blocMapper.toDTO(savedBloc);
     }
 
     @PutMapping("/updateBloc")
-    public Bloc updateBloc(@RequestBody Bloc b) {
-        return blocService.updateBloc(b);
+    public BlocDTO updateBloc(@RequestBody BlocDTO blocDTO) {
+        Bloc bloc = blocMapper.toEntity(blocDTO);
+        Bloc updatedBloc = blocService.updateBloc(bloc);
+        return blocMapper.toDTO(updatedBloc);
     }
 
     @DeleteMapping("/deleteBloc/{idBloc}")
@@ -30,7 +37,8 @@ public class BlocController {
     }
 
     @GetMapping("/retrieveAllBlocs")
-    public List<Bloc> retrieveAllBlocs() {
-        return blocService.getBloc();
+    public List<BlocDTO> retrieveAllBlocs() {
+        List<Bloc> blocs = blocService.getBloc();
+        return blocMapper.toDTOList(blocs);
     }
 }
