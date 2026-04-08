@@ -52,4 +52,29 @@ public class UniversiteService implements IUniversiteService {
     public List<Universite> findByFoyerIsNull() {
         return universiteRepository.findByFoyerIsNull();
     }
+
+    @Override
+    public List<Universite> retrieveUniversitesByAdresseLikeJPQL(String adresse) {
+        return universiteRepository.retrieveUniversitesByAdresseLikeJPQL(adresse);
+    }
+
+    @Override
+    public List<Universite> retrieveUniversitesWithFoyerJPQL() {
+        return universiteRepository.retrieveUniversitesWithFoyerJPQL();
+    }
+
+    @Override
+    public List<Universite> retrieveUniversitesByNomNative(String nom) {
+        return universiteRepository.retrieveUniversitesByNomNative(nom);
+    }
+
+    @Override
+    public int updateAdresseById(Long idUniversite, String adresse) {
+        return universiteRepository.updateAdresseById(idUniversite, adresse);
+    }
+
+    @Override
+    public int deleteUniversitesByAdresse(String adresse) {
+        return universiteRepository.deleteUniversitesByAdresse(adresse);
+    }
 }

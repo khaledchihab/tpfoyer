@@ -25,4 +25,14 @@ public interface IChambreService {
     List<Chambre> findByBlocNomBlocContains(String nomBloc);
 
     List<Chambre> findByBlocFoyerNomFoyerContains(String nomFoyer);
+
+    List<Chambre> retrieveChambresByTypeJPQL(TypeChambre typeC);
+
+    List<Chambre> retrieveChambresByNomBlocJPQL(String nomBloc);
+
+    List<Chambre> retrieveChambresByTypeNative(String typeC);
+
+    int updateTypeById(Long idChambre, TypeChambre typeC);
+
+    int deleteChambresByNumeroLessThan(Long maxNumero);
 }

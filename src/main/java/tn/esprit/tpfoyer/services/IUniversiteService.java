@@ -20,4 +20,14 @@ public interface IUniversiteService {
     List<Universite> findByAdresseIsNotNull();
 
     List<Universite> findByFoyerIsNull();
+
+    List<Universite> retrieveUniversitesByAdresseLikeJPQL(String adresse);
+
+    List<Universite> retrieveUniversitesWithFoyerJPQL();
+
+    List<Universite> retrieveUniversitesByNomNative(String nom);
+
+    int updateAdresseById(Long idUniversite, String adresse);
+
+    int deleteUniversitesByAdresse(String adresse);
 }

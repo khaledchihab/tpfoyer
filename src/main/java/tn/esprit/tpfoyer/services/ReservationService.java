@@ -58,4 +58,34 @@ public class ReservationService implements IReservationService {
     public List<Reservation> findByEstValideTrue() {
         return reservationRepository.findByEstValideTrue();
     }
+
+    @Override
+    public List<Reservation> retrieveReservationsByAnneeUniversitaire(LocalDate annee) {
+        return reservationRepository.retrieveReservationsByAnneeUniversitaire(annee);
+    }
+
+    @Override
+    public List<Reservation> retrieveReservationsByEtudiantNom(String nomEt) {
+        return reservationRepository.retrieveReservationsByEtudiantNom(nomEt);
+    }
+
+    @Override
+    public List<Reservation> retrieveReservationsByEstValideNative(boolean valide) {
+        return reservationRepository.retrieveReservationsByEstValideNative(valide);
+    }
+
+    @Override
+    public int updateReservationValidity(Long idReservation, boolean valide) {
+        return reservationRepository.updateReservationValidity(idReservation, valide);
+    }
+
+    @Override
+    public int deleteInvalidReservations() {
+        return reservationRepository.deleteInvalidReservations();
+    }
+
+    @Override
+    public int insertReservationNative(LocalDate anneeUniversitaire, boolean estValide) {
+        return reservationRepository.insertReservationNative(anneeUniversitaire, estValide);
+    }
 }

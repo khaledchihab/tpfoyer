@@ -56,4 +56,29 @@ public class FoyerController {
     public List<FoyerDTO> findByBlocsIdBloc(@RequestParam Long idBloc) {
         return foyerMapper.toDTOList(foyerService.findByBlocsIdBloc(idBloc));
     }
+
+    @GetMapping("/jpql/by-nom-universite")
+    public List<FoyerDTO> retrieveFoyersByNomUniversiteJPQL(@RequestParam String nomUniversite) {
+        return foyerMapper.toDTOList(foyerService.retrieveFoyersByNomUniversiteJPQL(nomUniversite));
+    }
+
+    @GetMapping("/jpql/by-capacite-min")
+    public List<FoyerDTO> retrieveFoyersByCapaciteMinJPQL(@RequestParam Long capacite) {
+        return foyerMapper.toDTOList(foyerService.retrieveFoyersByCapaciteMinJPQL(capacite));
+    }
+
+    @GetMapping("/native/by-nom")
+    public List<FoyerDTO> retrieveFoyersByNomNative(@RequestParam String nomFoyer) {
+        return foyerMapper.toDTOList(foyerService.retrieveFoyersByNomNative(nomFoyer));
+    }
+
+    @PutMapping("/jpql/update-capacite")
+    public int updateCapaciteById(@RequestParam Long idFoyer, @RequestParam Long capacite) {
+        return foyerService.updateCapaciteById(idFoyer, capacite);
+    }
+
+    @DeleteMapping("/jpql/delete-by-capacite-lt")
+    public int deleteFoyersByCapaciteLessThan(@RequestParam Long capacite) {
+        return foyerService.deleteFoyersByCapaciteLessThan(capacite);
+    }
 }

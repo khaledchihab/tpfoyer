@@ -72,4 +72,37 @@ public class ReservationController {
     public List<ReservationDTO> findByEstValideTrue() {
         return reservationMapper.toDTOList(reservationService.findByEstValideTrue());
     }
+
+    @GetMapping("/jpql/by-annee")
+    public List<ReservationDTO> retrieveReservationsByAnneeUniversitaire(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate annee) {
+        return reservationMapper.toDTOList(reservationService.retrieveReservationsByAnneeUniversitaire(annee));
+    }
+
+    @GetMapping("/jpql/by-etudiant-nom")
+    public List<ReservationDTO> retrieveReservationsByEtudiantNom(@RequestParam String nomEt) {
+        return reservationMapper.toDTOList(reservationService.retrieveReservationsByEtudiantNom(nomEt));
+    }
+
+    @GetMapping("/native/by-validite")
+    public List<ReservationDTO> retrieveReservationsByEstValideNative(@RequestParam boolean valide) {
+        return reservationMapper.toDTOList(reservationService.retrieveReservationsByEstValideNative(valide));
+    }
+
+    @PutMapping("/jpql/update-validity")
+    public int updateReservationValidity(@RequestParam Long idReservation, @RequestParam boolean valide) {
+        return reservationService.updateReservationValidity(idReservation, valide);
+    }
+
+    @DeleteMapping("/jpql/delete-invalid")
+    public int deleteInvalidReservations() {
+        return reservationService.deleteInvalidReservations();
+    }
+
+    @PostMapping("/native/insert")
+    public int insertReservationNative(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate anneeUniversitaire,
+            @RequestParam boolean estValide) {
+        return reservationService.insertReservationNative(anneeUniversitaire, estValide);
+    }
 }

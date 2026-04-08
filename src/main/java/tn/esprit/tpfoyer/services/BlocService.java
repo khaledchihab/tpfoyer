@@ -57,4 +57,29 @@ public class BlocService implements IBlocService {
     public List<Bloc> findByFoyerNomFoyerContains(String nomFoyer) {
         return blocRepository.findByFoyerNomFoyerContains(nomFoyer);
     }
+
+    @Override
+    public List<Bloc> retrieveBlocsByNomFoyerJPQL(String nomFoyer) {
+        return blocRepository.retrieveBlocsByNomFoyerJPQL(nomFoyer);
+    }
+
+    @Override
+    public List<Bloc> retrieveBlocsByCapaciteMinJPQL(Long capacite) {
+        return blocRepository.retrieveBlocsByCapaciteMinJPQL(capacite);
+    }
+
+    @Override
+    public List<Bloc> retrieveBlocsByNomNative(String nomBloc) {
+        return blocRepository.retrieveBlocsByNomNative(nomBloc);
+    }
+
+    @Override
+    public int updateCapaciteById(Long idBloc, Long capacite) {
+        return blocRepository.updateCapaciteById(idBloc, capacite);
+    }
+
+    @Override
+    public int deleteBlocsByCapaciteLessThan(Long capacite) {
+        return blocRepository.deleteBlocsByCapaciteLessThan(capacite);
+    }
 }

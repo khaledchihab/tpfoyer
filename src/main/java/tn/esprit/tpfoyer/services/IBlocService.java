@@ -22,4 +22,14 @@ public interface IBlocService {
     List<Bloc> findByCapaciteBlocBetween(Long minCapacite, Long maxCapacite);
 
     List<Bloc> findByFoyerNomFoyerContains(String nomFoyer);
+
+    List<Bloc> retrieveBlocsByNomFoyerJPQL(String nomFoyer);
+
+    List<Bloc> retrieveBlocsByCapaciteMinJPQL(Long capacite);
+
+    List<Bloc> retrieveBlocsByNomNative(String nomBloc);
+
+    int updateCapaciteById(Long idBloc, Long capacite);
+
+    int deleteBlocsByCapaciteLessThan(Long capacite);
 }

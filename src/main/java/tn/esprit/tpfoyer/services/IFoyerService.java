@@ -18,4 +18,14 @@ public interface IFoyerService {
     List<Foyer> findByUniversiteNomUniversiteContains(String nomUniversite);
 
     List<Foyer> findByBlocsIdBloc(Long idBloc);
+
+    List<Foyer> retrieveFoyersByNomUniversiteJPQL(String nomUniversite);
+
+    List<Foyer> retrieveFoyersByCapaciteMinJPQL(Long capacite);
+
+    List<Foyer> retrieveFoyersByNomNative(String nomFoyer);
+
+    int updateCapaciteById(Long idFoyer, Long capacite);
+
+    int deleteFoyersByCapaciteLessThan(Long capacite);
 }

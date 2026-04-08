@@ -63,4 +63,29 @@ public class ChambreService implements IChambreService {
     public List<Chambre> findByBlocFoyerNomFoyerContains(String nomFoyer) {
         return chambreRepository.findByBlocFoyerNomFoyerContains(nomFoyer);
     }
+
+    @Override
+    public List<Chambre> retrieveChambresByTypeJPQL(TypeChambre typeC) {
+        return chambreRepository.retrieveChambresByTypeJPQL(typeC);
+    }
+
+    @Override
+    public List<Chambre> retrieveChambresByNomBlocJPQL(String nomBloc) {
+        return chambreRepository.retrieveChambresByNomBlocJPQL(nomBloc);
+    }
+
+    @Override
+    public List<Chambre> retrieveChambresByTypeNative(String typeC) {
+        return chambreRepository.retrieveChambresByTypeNative(typeC);
+    }
+
+    @Override
+    public int updateTypeById(Long idChambre, TypeChambre typeC) {
+        return chambreRepository.updateTypeById(idChambre, typeC);
+    }
+
+    @Override
+    public int deleteChambresByNumeroLessThan(Long maxNumero) {
+        return chambreRepository.deleteChambresByNumeroLessThan(maxNumero);
+    }
 }

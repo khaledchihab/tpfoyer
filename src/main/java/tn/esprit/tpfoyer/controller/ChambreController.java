@@ -72,4 +72,29 @@ public class ChambreController {
     public List<ChambreDTO> findByBlocFoyerNomFoyerContains(@RequestParam String nomFoyer) {
         return chambreMapper.toDTOList(chambreService.findByBlocFoyerNomFoyerContains(nomFoyer));
     }
+
+    @GetMapping("/jpql/by-type")
+    public List<ChambreDTO> retrieveChambresByTypeJPQL(@RequestParam TypeChambre typeC) {
+        return chambreMapper.toDTOList(chambreService.retrieveChambresByTypeJPQL(typeC));
+    }
+
+    @GetMapping("/jpql/by-nom-bloc")
+    public List<ChambreDTO> retrieveChambresByNomBlocJPQL(@RequestParam String nomBloc) {
+        return chambreMapper.toDTOList(chambreService.retrieveChambresByNomBlocJPQL(nomBloc));
+    }
+
+    @GetMapping("/native/by-type")
+    public List<ChambreDTO> retrieveChambresByTypeNative(@RequestParam String typeC) {
+        return chambreMapper.toDTOList(chambreService.retrieveChambresByTypeNative(typeC));
+    }
+
+    @PutMapping("/jpql/update-type")
+    public int updateTypeById(@RequestParam Long idChambre, @RequestParam TypeChambre typeC) {
+        return chambreService.updateTypeById(idChambre, typeC);
+    }
+
+    @DeleteMapping("/jpql/delete-by-numero-lt")
+    public int deleteChambresByNumeroLessThan(@RequestParam Long maxNumero) {
+        return chambreService.deleteChambresByNumeroLessThan(maxNumero);
+    }
 }

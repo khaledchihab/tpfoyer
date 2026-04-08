@@ -23,4 +23,16 @@ public interface IReservationService {
     List<Reservation> findByEtudiantsIsNotNull();
 
     List<Reservation> findByEstValideTrue();
+
+    List<Reservation> retrieveReservationsByAnneeUniversitaire(LocalDate annee);
+
+    List<Reservation> retrieveReservationsByEtudiantNom(String nomEt);
+
+    List<Reservation> retrieveReservationsByEstValideNative(boolean valide);
+
+    int updateReservationValidity(Long idReservation, boolean valide);
+
+    int deleteInvalidReservations();
+
+    int insertReservationNative(LocalDate anneeUniversitaire, boolean estValide);
 }

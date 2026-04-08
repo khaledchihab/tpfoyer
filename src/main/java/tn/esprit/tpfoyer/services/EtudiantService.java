@@ -58,4 +58,29 @@ public class EtudiantService implements IEtudiantService {
     public List<Etudiant> findByDateNaissanceBetween(LocalDate from, LocalDate to) {
         return etudiantRepository.findByDateNaissanceBetween(from, to);
     }
+
+    @Override
+    public List<Etudiant> retrieveEtudiantsByEcoleJPQL(String ecole) {
+        return etudiantRepository.retrieveEtudiantsByEcoleJPQL(ecole);
+    }
+
+    @Override
+    public List<Etudiant> retrieveEtudiantsByReservationValiditeJPQL(boolean valide) {
+        return etudiantRepository.retrieveEtudiantsByReservationValiditeJPQL(valide);
+    }
+
+    @Override
+    public List<Etudiant> retrieveEtudiantsByNomNative(String nom) {
+        return etudiantRepository.retrieveEtudiantsByNomNative(nom);
+    }
+
+    @Override
+    public int updateEcoleById(Long idEtudiant, String ecole) {
+        return etudiantRepository.updateEcoleById(idEtudiant, ecole);
+    }
+
+    @Override
+    public int deleteEtudiantsByEcole(String ecole) {
+        return etudiantRepository.deleteEtudiantsByEcole(ecole);
+    }
 }

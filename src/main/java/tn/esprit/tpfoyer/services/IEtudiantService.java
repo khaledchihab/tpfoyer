@@ -23,4 +23,14 @@ public interface IEtudiantService {
     List<Etudiant> findByEcoleIsNotNull();
 
     List<Etudiant> findByDateNaissanceBetween(LocalDate from, LocalDate to);
+
+    List<Etudiant> retrieveEtudiantsByEcoleJPQL(String ecole);
+
+    List<Etudiant> retrieveEtudiantsByReservationValiditeJPQL(boolean valide);
+
+    List<Etudiant> retrieveEtudiantsByNomNative(String nom);
+
+    int updateEcoleById(Long idEtudiant, String ecole);
+
+    int deleteEtudiantsByEcole(String ecole);
 }

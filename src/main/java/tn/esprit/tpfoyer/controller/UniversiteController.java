@@ -61,4 +61,29 @@ public class UniversiteController {
     public List<UniversiteDTO> findByFoyerIsNull() {
         return universiteMapper.toDTOList(universiteService.findByFoyerIsNull());
     }
+
+    @GetMapping("/jpql/by-adresse-like")
+    public List<UniversiteDTO> retrieveUniversitesByAdresseLikeJPQL(@RequestParam String adresse) {
+        return universiteMapper.toDTOList(universiteService.retrieveUniversitesByAdresseLikeJPQL(adresse));
+    }
+
+    @GetMapping("/jpql/with-foyer")
+    public List<UniversiteDTO> retrieveUniversitesWithFoyerJPQL() {
+        return universiteMapper.toDTOList(universiteService.retrieveUniversitesWithFoyerJPQL());
+    }
+
+    @GetMapping("/native/by-nom")
+    public List<UniversiteDTO> retrieveUniversitesByNomNative(@RequestParam String nom) {
+        return universiteMapper.toDTOList(universiteService.retrieveUniversitesByNomNative(nom));
+    }
+
+    @PutMapping("/jpql/update-adresse")
+    public int updateAdresseById(@RequestParam Long idUniversite, @RequestParam String adresse) {
+        return universiteService.updateAdresseById(idUniversite, adresse);
+    }
+
+    @DeleteMapping("/jpql/delete-by-adresse")
+    public int deleteUniversitesByAdresse(@RequestParam String adresse) {
+        return universiteService.deleteUniversitesByAdresse(adresse);
+    }
 }

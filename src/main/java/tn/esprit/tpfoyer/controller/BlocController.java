@@ -66,4 +66,29 @@ public class BlocController {
     public List<BlocDTO> findByFoyerNomFoyerContains(@RequestParam String nomFoyer) {
         return blocMapper.toDTOList(blocService.findByFoyerNomFoyerContains(nomFoyer));
     }
+
+    @GetMapping("/jpql/by-nom-foyer")
+    public List<BlocDTO> retrieveBlocsByNomFoyerJPQL(@RequestParam String nomFoyer) {
+        return blocMapper.toDTOList(blocService.retrieveBlocsByNomFoyerJPQL(nomFoyer));
+    }
+
+    @GetMapping("/jpql/by-capacite-min")
+    public List<BlocDTO> retrieveBlocsByCapaciteMinJPQL(@RequestParam Long capacite) {
+        return blocMapper.toDTOList(blocService.retrieveBlocsByCapaciteMinJPQL(capacite));
+    }
+
+    @GetMapping("/native/by-nom")
+    public List<BlocDTO> retrieveBlocsByNomNative(@RequestParam String nomBloc) {
+        return blocMapper.toDTOList(blocService.retrieveBlocsByNomNative(nomBloc));
+    }
+
+    @PutMapping("/jpql/update-capacite")
+    public int updateCapaciteById(@RequestParam Long idBloc, @RequestParam Long capacite) {
+        return blocService.updateCapaciteById(idBloc, capacite);
+    }
+
+    @DeleteMapping("/jpql/delete-by-capacite-lt")
+    public int deleteBlocsByCapaciteLessThan(@RequestParam Long capacite) {
+        return blocService.deleteBlocsByCapaciteLessThan(capacite);
+    }
 }

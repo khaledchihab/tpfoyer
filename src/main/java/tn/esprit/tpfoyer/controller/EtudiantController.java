@@ -70,4 +70,29 @@ public class EtudiantController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
         return etudiantMapper.toDTOList(etudiantService.findByDateNaissanceBetween(from, to));
     }
+
+    @GetMapping("/jpql/by-ecole")
+    public List<EtudiantDTO> retrieveEtudiantsByEcoleJPQL(@RequestParam String ecole) {
+        return etudiantMapper.toDTOList(etudiantService.retrieveEtudiantsByEcoleJPQL(ecole));
+    }
+
+    @GetMapping("/jpql/by-reservation-validite")
+    public List<EtudiantDTO> retrieveEtudiantsByReservationValiditeJPQL(@RequestParam boolean valide) {
+        return etudiantMapper.toDTOList(etudiantService.retrieveEtudiantsByReservationValiditeJPQL(valide));
+    }
+
+    @GetMapping("/native/by-nom")
+    public List<EtudiantDTO> retrieveEtudiantsByNomNative(@RequestParam String nom) {
+        return etudiantMapper.toDTOList(etudiantService.retrieveEtudiantsByNomNative(nom));
+    }
+
+    @PutMapping("/jpql/update-ecole")
+    public int updateEcoleById(@RequestParam Long idEtudiant, @RequestParam String ecole) {
+        return etudiantService.updateEcoleById(idEtudiant, ecole);
+    }
+
+    @DeleteMapping("/jpql/delete-by-ecole")
+    public int deleteEtudiantsByEcole(@RequestParam String ecole) {
+        return etudiantService.deleteEtudiantsByEcole(ecole);
+    }
 }
