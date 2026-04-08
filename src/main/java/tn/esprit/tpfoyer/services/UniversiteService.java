@@ -32,4 +32,24 @@ public class UniversiteService implements IUniversiteService {
     public List<Universite> getUniversites() {
         return universiteRepository.findAll();
     }
+
+    @Override
+    public List<Universite> findByNomUniversiteContains(String nomUniversite) {
+        return universiteRepository.findByNomUniversiteContains(nomUniversite);
+    }
+
+    @Override
+    public List<Universite> findByAdresseLike(String adresse) {
+        return universiteRepository.findByAdresseLike(adresse);
+    }
+
+    @Override
+    public List<Universite> findByAdresseIsNotNull() {
+        return universiteRepository.findByAdresseIsNotNull();
+    }
+
+    @Override
+    public List<Universite> findByFoyerIsNull() {
+        return universiteRepository.findByFoyerIsNull();
+    }
 }

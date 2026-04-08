@@ -1,6 +1,7 @@
 package tn.esprit.tpfoyer.services;
 
 import tn.esprit.tpfoyer.entities.Foyer;
+
 import java.util.List;
 
 public interface IFoyerService {
@@ -11,4 +12,10 @@ public interface IFoyerService {
     void deleteFoyer(Long id);
 
     List<Foyer> getFoyers();
+
+    List<Foyer> findByNomFoyerContains(String nomFoyer);
+
+    List<Foyer> findByUniversiteNomUniversiteContains(String nomUniversite);
+
+    List<Foyer> findByBlocsIdBloc(Long idBloc);
 }

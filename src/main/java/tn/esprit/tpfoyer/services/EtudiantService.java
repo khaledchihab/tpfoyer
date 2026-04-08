@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.tpfoyer.entities.Etudiant;
 import tn.esprit.tpfoyer.repositories.EtudiantRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -31,5 +32,30 @@ public class EtudiantService implements IEtudiantService {
     @Override
     public List<Etudiant> getEtudiants() {
         return etudiantRepository.findAll();
+    }
+
+    @Override
+    public List<Etudiant> findByNomEtLike(String nomEt) {
+        return etudiantRepository.findByNomEtLike(nomEt);
+    }
+
+    @Override
+    public List<Etudiant> findByNomEtContains(String nomEt) {
+        return etudiantRepository.findByNomEtContains(nomEt);
+    }
+
+    @Override
+    public List<Etudiant> findByEcoleIsNull() {
+        return etudiantRepository.findByEcoleIsNull();
+    }
+
+    @Override
+    public List<Etudiant> findByEcoleIsNotNull() {
+        return etudiantRepository.findByEcoleIsNotNull();
+    }
+
+    @Override
+    public List<Etudiant> findByDateNaissanceBetween(LocalDate from, LocalDate to) {
+        return etudiantRepository.findByDateNaissanceBetween(from, to);
     }
 }

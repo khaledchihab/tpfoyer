@@ -32,4 +32,29 @@ public class BlocService implements IBlocService {
     public List<Bloc> getBloc() {
         return blocRepository.findAll();
     }
+
+    @Override
+    public List<Bloc> findByNomBlocLike(String nomBloc) {
+        return blocRepository.findByNomBlocLike(nomBloc);
+    }
+
+    @Override
+    public List<Bloc> findByNomBlocContains(String nomBloc) {
+        return blocRepository.findByNomBlocContains(nomBloc);
+    }
+
+    @Override
+    public List<Bloc> findByCapaciteBlocGreaterThan(Long capacite) {
+        return blocRepository.findByCapaciteBlocGreaterThan(capacite);
+    }
+
+    @Override
+    public List<Bloc> findByCapaciteBlocBetween(Long minCapacite, Long maxCapacite) {
+        return blocRepository.findByCapaciteBlocBetween(minCapacite, maxCapacite);
+    }
+
+    @Override
+    public List<Bloc> findByFoyerNomFoyerContains(String nomFoyer) {
+        return blocRepository.findByFoyerNomFoyerContains(nomFoyer);
+    }
 }

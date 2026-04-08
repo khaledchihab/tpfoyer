@@ -41,4 +41,19 @@ public class FoyerController {
         List<Foyer> foyers = foyerService.getFoyers();
         return foyerMapper.toDTOList(foyers);
     }
+
+    @GetMapping("/search/by-nom")
+    public List<FoyerDTO> findByNomFoyerContains(@RequestParam String nomFoyer) {
+        return foyerMapper.toDTOList(foyerService.findByNomFoyerContains(nomFoyer));
+    }
+
+    @GetMapping("/search/by-universite")
+    public List<FoyerDTO> findByUniversiteNomUniversiteContains(@RequestParam String nomUniversite) {
+        return foyerMapper.toDTOList(foyerService.findByUniversiteNomUniversiteContains(nomUniversite));
+    }
+
+    @GetMapping("/search/by-bloc-id")
+    public List<FoyerDTO> findByBlocsIdBloc(@RequestParam Long idBloc) {
+        return foyerMapper.toDTOList(foyerService.findByBlocsIdBloc(idBloc));
+    }
 }

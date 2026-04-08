@@ -32,4 +32,19 @@ public class FoyerService implements IFoyerService {
     public List<Foyer> getFoyers() {
         return foyerRepository.findAll();
     }
+
+    @Override
+    public List<Foyer> findByNomFoyerContains(String nomFoyer) {
+        return foyerRepository.findByNomFoyerContains(nomFoyer);
+    }
+
+    @Override
+    public List<Foyer> findByUniversiteNomUniversiteContains(String nomUniversite) {
+        return foyerRepository.findByUniversiteNomUniversiteContains(nomUniversite);
+    }
+
+    @Override
+    public List<Foyer> findByBlocsIdBloc(Long idBloc) {
+        return foyerRepository.findByBlocsIdBloc(idBloc);
+    }
 }

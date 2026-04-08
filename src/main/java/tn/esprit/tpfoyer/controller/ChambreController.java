@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.dto.ChambreDTO;
 import tn.esprit.tpfoyer.entities.Chambre;
+import tn.esprit.tpfoyer.entities.TypeChambre;
 import tn.esprit.tpfoyer.mapper.mapstruct.ChambreMapStructMapper;
 import tn.esprit.tpfoyer.services.IChambreService;
 
@@ -40,5 +41,35 @@ public class ChambreController {
     public List<ChambreDTO> retrieveAllChambres() {
         List<Chambre> chambres = chambreService.getChambres();
         return chambreMapper.toDTOList(chambres);
+    }
+
+    @GetMapping("/search/by-numero-gt")
+    public List<ChambreDTO> findByNumeroChambreGreaterThan(@RequestParam Long numero) {
+        return chambreMapper.toDTOList(chambreService.findByNumeroChambreGreaterThan(numero));
+    }
+
+    @GetMapping("/search/by-numero-lt")
+    public List<ChambreDTO> findByNumeroChambreLessThan(@RequestParam Long numero) {
+        return chambreMapper.toDTOList(chambreService.findByNumeroChambreLessThan(numero));
+    }
+
+    @GetMapping("/search/by-numero-between")
+    public List<ChambreDTO> findByNumeroChambreBetween(@RequestParam Long minNumero, @RequestParam Long maxNumero) {
+        return chambreMapper.toDTOList(chambreService.findByNumeroChambreBetween(minNumero, maxNumero));
+    }
+
+    @GetMapping("/search/by-type")
+    public List<ChambreDTO> findByTypeC(@RequestParam TypeChambre typeChambre) {
+        return chambreMapper.toDTOList(chambreService.findByTypeC(typeChambre));
+    }
+
+    @GetMapping("/search/by-bloc")
+    public List<ChambreDTO> findByBlocNomBlocContains(@RequestParam String nomBloc) {
+        return chambreMapper.toDTOList(chambreService.findByBlocNomBlocContains(nomBloc));
+    }
+
+    @GetMapping("/search/by-foyer")
+    public List<ChambreDTO> findByBlocFoyerNomFoyerContains(@RequestParam String nomFoyer) {
+        return chambreMapper.toDTOList(chambreService.findByBlocFoyerNomFoyerContains(nomFoyer));
     }
 }

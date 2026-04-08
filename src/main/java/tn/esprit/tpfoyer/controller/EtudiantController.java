@@ -1,12 +1,14 @@
 package tn.esprit.tpfoyer.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.dto.EtudiantDTO;
 import tn.esprit.tpfoyer.entities.Etudiant;
 import tn.esprit.tpfoyer.mapper.mapstruct.EtudiantMapStructMapper;
 import tn.esprit.tpfoyer.services.IEtudiantService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -40,5 +42,32 @@ public class EtudiantController {
     public List<EtudiantDTO> retrieveAllEtudiants() {
         List<Etudiant> etudiants = etudiantService.getEtudiants();
         return etudiantMapper.toDTOList(etudiants);
+    }
+
+    @GetMapping("/search/by-nom-like")
+    public List<EtudiantDTO> findByNomEtLike(@RequestParam String nomEt) {
+        return etudiantMapper.toDTOList(etudiantService.findByNomEtLike(nomEt));
+    }
+
+    @GetMapping("/search/by-nom-contains")
+    public List<EtudiantDTO> findByNomEtContains(@RequestParam String nomEt) {
+        return etudiantMapper.toDTOList(etudiantService.findByNomEtContains(nomEt));
+    }
+
+    @GetMapping("/search/ecole-null")
+    public List<EtudiantDTO> findByEcoleIsNull() {
+        return etudiantMapper.toDTOList(etudiantService.findByEcoleIsNull());
+    }
+
+    @GetMapping("/search/ecole-not-null")
+    public List<EtudiantDTO> findByEcoleIsNotNull() {
+        return etudiantMapper.toDTOList(etudiantService.findByEcoleIsNotNull());
+    }
+
+    @GetMapping("/search/by-date-naissance-between")
+    public List<EtudiantDTO> findByDateNaissanceBetween(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
+        return etudiantMapper.toDTOList(etudiantService.findByDateNaissanceBetween(from, to));
     }
 }

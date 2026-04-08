@@ -41,4 +41,29 @@ public class BlocController {
         List<Bloc> blocs = blocService.getBloc();
         return blocMapper.toDTOList(blocs);
     }
+
+    @GetMapping("/search/by-nom-like")
+    public List<BlocDTO> findByNomBlocLike(@RequestParam String nomBloc) {
+        return blocMapper.toDTOList(blocService.findByNomBlocLike(nomBloc));
+    }
+
+    @GetMapping("/search/by-nom-contains")
+    public List<BlocDTO> findByNomBlocContains(@RequestParam String nomBloc) {
+        return blocMapper.toDTOList(blocService.findByNomBlocContains(nomBloc));
+    }
+
+    @GetMapping("/search/by-capacite-gt")
+    public List<BlocDTO> findByCapaciteBlocGreaterThan(@RequestParam Long capacite) {
+        return blocMapper.toDTOList(blocService.findByCapaciteBlocGreaterThan(capacite));
+    }
+
+    @GetMapping("/search/by-capacite-between")
+    public List<BlocDTO> findByCapaciteBlocBetween(@RequestParam Long minCapacite, @RequestParam Long maxCapacite) {
+        return blocMapper.toDTOList(blocService.findByCapaciteBlocBetween(minCapacite, maxCapacite));
+    }
+
+    @GetMapping("/search/by-foyer")
+    public List<BlocDTO> findByFoyerNomFoyerContains(@RequestParam String nomFoyer) {
+        return blocMapper.toDTOList(blocService.findByFoyerNomFoyerContains(nomFoyer));
+    }
 }
